@@ -4,7 +4,9 @@ public class Main
 {
     public static void main(String[] args)
     {
-        Timer example = new Timer(0);
-        example.start();
+        // Timer example = new Timer(0);
+        // example.start();
+        Gui display = new Gui();
+        display.display();
     }
 }
