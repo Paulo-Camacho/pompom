@@ -1,13 +1,12 @@
 package pompom;
 
+import java.awt.EventQueue;
+
 public class Main
 {
-    public static void main(String[] args)
+    public static void main( String [ ] args )
     {
-        // Timer example = new Timer(0);
-        // example.start();
-        Gui display = new Gui();
-        display.menu();
-
+        Gui ex = new Gui();
+        ex.display();
     }
 }
