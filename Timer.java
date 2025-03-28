@@ -31,7 +31,7 @@ public class Timer
         System.out.println("INIT TIMER");
 
         // TIMER
-        for (int i = 0; i <= seconds; ++i)
+        for (int i = 0; i <= seconds * 60; ++i)
         {
             System.out.println("\rThis is the " + i + "Th iteration");
             try
