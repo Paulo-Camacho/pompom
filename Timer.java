@@ -21,11 +21,6 @@ public class Timer
 
        frame.setLayout(new FlowLayout());
 
-       // Adding buttons to each region
-       frame.add(new JButton("North"), BorderLayout.NORTH);
-       frame.add(new JButton("South"), BorderLayout.SOUTH);
-       frame.add(new JButton("East"), BorderLayout.EAST);
-       frame.add(new JButton("West"), BorderLayout.WEST);
        frame.add(new JButton("Center"), BorderLayout.CENTER);
 
        frame.setVisible(true);
