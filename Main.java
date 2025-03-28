@@ -7,6 +7,9 @@ public class Main
         // Timer example = new Timer(0);
         // example.start();
         Gui display = new Gui();
+        Timer example = new Timer();
+        example.menu();
         display.display();
+
     }
 }
