@@ -3,68 +3,60 @@ package pompom;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
+import javax.swing.Timer;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.BorderFactory;
+public class Gui implements ActionListener {
+    private JFrame frame;
+    private JButton debug;
+        private JButton rPom;
+    private JLabel label;
+    private JPanel panel;
+    private Timer timer;
 
+    private double time = 0.0;
 
-public class Gui implements ActionListener
-{
-        private JFrame frame;
-        private JButton debug;
-        private JLabel label;
-        private JPanel panel;
+    public Gui() {
+        frame = new JFrame();
 
+        debug = new JButton( "Debug" );
+        rPom  = new JButton( "Run" );
+        debug.addActionListener(this);
+        rPom.addActionListener(this);
 
-        Timer pDebug = new Timer();
-        private int time = 0;
+        label = new JLabel("INIT");
 
+        panel = new JPanel();
+        panel.setBorder(BorderFactory.createEmptyBorder(100, 100, 50, 100));
+        panel.setLayout(new GridLayout(3, 1));
+        panel.add(debug);
+        panel.add(rPom);
+        panel.add(label);
 
+        frame.add(panel, BorderLayout.CENTER);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Check this out");
+        frame.pack();
+        frame.setVisible(true);
 
-        public Gui( )
-        {
-                frame = new JFrame( );
-
-                debug = new JButton( "debug " );
-                debug.addActionListener(this);
-                label = new JLabel( "INIT" );
-
-
-                panel = new JPanel( );
-                panel.setBorder(BorderFactory.createEmptyBorder( 30, 30, 10, 30 ) );
-                panel.setLayout( new GridLayout( 0, 1 ) );
-                panel.add( debug );
-                panel.add( label );
-
-                frame.add( panel, BorderLayout.CENTER );
-                frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
-                frame.setTitle( "Check this out" );
-                frame.pack( );
-                frame.setVisible(true);
-
-
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e)
-        {
-        double seconds = 0.1;
-        for(int i = 0; i <= seconds * 60; ++i)
-        {
-            System.out.print( "\rThis is the " + i + "Th iteration" );
-            label.setText( "Hello " );
-            try
-                {
-                Thread.sleep(1000); // 1000 milliseconds = 1 second
+        // Setup timer to update label every second
+        timer = new Timer(1000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                time++;
+                label.setText("Seconds elapsed: " + time);
+                if (time >= 5) { // Stop after 60 seconds
+                    timer.stop();
+                    label.setText("TIMER HAS STOPPED");
                 }
-                catch (InterruptedException a)
-                {
-                System.out.println("SOMETHING WENT WRONG WITH SLEEP");
-                }
-        }
-        System.out.println("TIMER AS STOPPED");
-        }
+            }
+        });
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        time = 0.0; // Reset time
+        label.setText("INIT"); // Reset label text
+        timer.start(); // Start the timer
+    }
+
 }
