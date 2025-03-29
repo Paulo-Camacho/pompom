@@ -7,7 +7,6 @@ public class Timer
 {
     public void start( double seconds )
     {
-        System.out.println( "INIT TIMER" );
         // TIMER
         for(int i = 0; i <= seconds * 60; ++i)
         {
